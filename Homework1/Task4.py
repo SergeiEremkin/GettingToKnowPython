@@ -23,4 +23,5 @@ def check_range():
         except ValueError:
             print('Нужно ввести число')
 
+
 check_range()
