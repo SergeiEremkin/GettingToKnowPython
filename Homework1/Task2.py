@@ -7,18 +7,11 @@
 
 from asyncio.windows_events import NULL
 
-
 def check_true():
     for X in (True, False):
         for Y in (True, False):
             for Z in (True, False):
-                if not (X or Y or Z) == (not X and not Y and not Z):
                     statement = not (X or Y or Z) == (not X and not Y and not Z)
                     print(f'| {X} | {Y} | {Z} | {statement} |')
                     print('-------------------------------')
-                else:
-                    print(f'| {X} | {Y} | {Z} | {statement} |')
-                    print('-------------------------------')
-
-
 check_true()

@@ -10,7 +10,7 @@ from math import sqrt
 
 
 def check_range_points(ax, ay, bx, by):
-
+  
     return print(round((sqrt(int((bx - ax))**2+int((ay - by))**2)), 2))
 
 
