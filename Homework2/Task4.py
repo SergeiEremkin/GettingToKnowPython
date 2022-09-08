@@ -10,9 +10,9 @@ def random_without_random(minimum, maximum):
        random_time = str(time.perf_counter())
        rnd = float(random_time [::-1][:3:])/1000
        print(rnd)
-       return int(minimum + rnd * (maximum-minimum))
+       return int(minimum + rnd * (maximum-minimum)+1)
        
-print(random_without_random(1,50))
+print(random_without_random(1,5))
 
 
 

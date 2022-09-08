@@ -7,7 +7,7 @@
 def res_fact(N):
     factorial = 1
     list_factorial = []
-    for i in range(2, N+1):
+    for i in range(2, N+2):
         list_factorial.append(factorial)
         factorial *= i
     print(list_factorial)
