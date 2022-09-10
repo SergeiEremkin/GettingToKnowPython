@@ -6,38 +6,47 @@
 # Решение оформлять в виде функций
 # По возможности добавляйте docstring
 
-# Fn = F(n+2)−F(n+1) нега
-# F_{n}=F_{n-1}+F_{n-2}} обычный
+# Fn = F(number+2)−F(number+1) нега
+# F_{number}=F_{number-1}+F_{number-2}} обычный
 
-"""
-Если n больше нуля, то идет по первому if, если < 0 то по второму. Первые 2 элемента нам известны,
-    мы сразу внесли их в список x, добавляем элементы по формуле со 2 индекса.
-"""
+from typing import List
 
 
-def fibo(n):
-    if n >= 0:
-        idx = range(n+1)
-        x = [0, 1]
+def fibo(number: int) -> List:
+    """
+    Если number больше нуля, то идет по первому if, если < 0? . Первые 2 элемента нам известны,
+    мы сразу внесли их в список fibo_list, добавляем элементы по формуле со 2 индекса.
+    """
+    if number >= 0:
+        idx = range(number+1)
+        fibo_list = [0, 1]
         for k in idx[2:]:
-            x.append(x[k-1] + x[k-2])
-        return x[n]
+            fibo_list.append(fibo_list[k-1] + fibo_list[k-2])
     else:
-        n = -(n-1)
-        idx = range(n+1)
-        x = [1, 0]
+        number = -(number-1)
+        idx = range(number+1)
+        fibo_list = [1, 0]
         for k in idx[2:]:
-            x.append(x[k-2] - x[k-1])
-        x.reverse()
-    return x[0]
+            fibo_list.append(fibo_list[k-2] - fibo_list[k-1])
+        fibo_list.reverse()
+    return fibo_list
 
 
-'''вводим числовой диапозон'''
+def make_list_of_negafibo(number: int) -> List:
+    """
+    Метод принимает на вход число, берем его по модулю. И далее делаем отдельно 2 листа, 1 на отрицательное число,
+    второй на положительное и потом добавляем его в результирующий - list_negafibo
+    """
+    list_negafibo = []
+    number = abs(number)
+    plus_fibo = fibo(number)[2:]
+    minus_fibo = fibo(-number)
+    for num in minus_fibo:
+        list_negafibo.append(num)
+    for num in plus_fibo:
+        list_negafibo.append(num)
+    return list_negafibo
 
 
-def show_fib_in_range(min, max):
-    for i in range(min, max+1):
-        print(fibo(i), end=' ')
-
-
-show_fib_in_range(-8, 8)
+print(make_list_of_negafibo(8))
+print(make_list_of_negafibo(-8))

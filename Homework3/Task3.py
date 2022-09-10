@@ -6,32 +6,30 @@
 # - [1.1, 1.2, 3.1, 5.17, 10.01] => 0.19 или 19
 #  - [4.07, 5.1, 8.2444, 6.98] - 0.91 или 91
 
-
-from posixpath import split
 from typing import List
-"""- Проверяю максимальное кол-во цифр в числе, для того 
-    чтобы понять на сколько округлять результат при подсчете.
-"""
+from check import check_list_for_float
 
 
 def max_lenght_element(list_float: List[float]) -> int:
-    counter = 0
+    """
+    Проверяю максимальное кол-во цифр в правой части, для того 
+    чтобы понять на какое число округлять результат при подсчете.
+    """
     max_count = 0
-    string_float = str(list_float)
-    list_string_float = string_float.split(',')
-    for float in list_string_float:
-        for char in float:
-            counter += 1
-            if max_count < counter:
-                max_count = counter
-                counter = 0
+    if check_list_for_float(list_float):
+        element_of_right_side = []
+        for float in list_float:
+            float = str(float).split('.')
+            for i in range(len(float)-1):
+                element_of_right_side.append(float[i+1])
+        for element in element_of_right_side:
+            if max_count < len(element):
+                max_count = len(element)
     return max_count
 
 
-'''Считаю разницу, перед этим убрав целую часть'''
-
-
 def float_difference_between_the_numbers(list_float: List[float]) -> None:
+    '''Считаю разницу, перед этим убрав целую часть'''
     round_point = max_lenght_element(list_float)
     result_list = []
     for elem in list_float:

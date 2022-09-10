@@ -8,10 +8,9 @@
 
 from typing import List
 
-'''Заполнил список 1 и 0 в обратном порядке'''
-
 
 def fill_list_binary_numbers(number: int) -> List[int]:
+    '''Заполнил список 1 и 0 в обратном порядке'''
     binary_list = []
     while number != 0:
         rest = number % 2
@@ -21,6 +20,7 @@ def fill_list_binary_numbers(number: int) -> List[int]:
 
 
 def convert_to_binary(number: int) -> int:
+    '''Переворачиваю список наоборот, записываю список в одну строку и конвертирую в int'''
     result = ''
     try:
         binary_list = fill_list_binary_numbers(number)
