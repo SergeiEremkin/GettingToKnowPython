@@ -5,14 +5,20 @@ from typing import List
 #   N = 20 -> [2,5]
 #   N = 30 -> [2, 3, 5]
 
-def is_prime(N: int):
+def take_divisors(N: int):
     list_det_of_n = []
     for i in range(2, N+1):
-        if i > 1 and (i % 2 != 0 or i == 2) and (
-                i % 3 != 0 or i == 3) and N % i == 0:
-            list_det_of_n.append(i)
+        if N % i == 0:
+            count = 1
+            for j in range(2, i//2+1):
+                if i % j == 0:
+                    count = 0
+                    break
+            if count == 1:
+                list_det_of_n.append(i)
     return list_det_of_n
 
 
-print(is_prime(20))
-print(is_prime(30))
+print(take_divisors(20))
+print(take_divisors(30))
+print(take_divisors(650))

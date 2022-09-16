@@ -6,6 +6,7 @@
 # сжатый текст.
 
 from check import write_string_in_file
+from check import read_string_from_file
 
 data = 'AAAAAAAAAAAABBBBBBBBBBBCCCCCCCCCCDDDDDDEEEEEFFFFG python is sooooooo coooooool'
 filename = 'uncompressed.txt'
@@ -13,19 +14,46 @@ filename2 = 'compressedfile.txt'
 
 write_string_in_file(data, filename)
 
+
 def encode(data):
-    encoding = ""
-    i = 0
-    while i < len(data):
-        count = 1
-        while i + 1 < len(data) and data[i] == data[i + 1]:
-            count = count + 1
-            i = i + 1
-        encoding += str(count) + data[i]
-        i = i + 1
+    encoding = []
+    count = 1
+    char = data[0]
+    for i in range(1, len(data)):
+        if data[i] == char:
+            count += 1
+        else:
+            encoding.append([count, char])
+            char = data[i]
+            count = 1
+    encoding.append([char, count])
     return encoding
 
-write_string_in_file(data, filename)
-compressed = encode(data)
-write_string_in_file(compressed, filename2)
 
+encoded_list = encode(data)
+
+
+def encode_to_string(encoded_list):
+    compressed = ''
+    for i in range(0, len(encoded_list)):
+        for j in encoded_list[i]:
+            compressed += str(j)
+    return compressed
+
+
+encoded_string = encode_to_string(encoded_list)
+
+write_string_in_file(encoded_string, filename2)
+
+encoded_string = read_string_from_file(filename)
+
+
+def decode(encoded_string):
+    decompressed = ''
+    for i in range(0, len(encoded_string)):
+        if encoded_string[i].isalpha() or encoded_string[i].isspace() == True:
+            decompressed += encoded_string[i]
+    return decompressed
+
+
+print(decode(encoded_string))
