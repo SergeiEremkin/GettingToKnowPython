@@ -18,7 +18,7 @@ def encode_letter(letter, shift):
     encoded = ''
     for pos in range(len(letter)):
         index = dictionary.index(letter[pos])
-        index = index + shift + len(dictionary) % len(dictionary)
+        index = index + (shift + len(dictionary)) % len(dictionary)
         encoded += dictionary[index]
     return encoded
 
