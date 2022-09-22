@@ -30,3 +30,13 @@ def check_number(message):
         except ValueError:
             print('Нужно ввеcти число')
     return user_input    
+
+def check_number_without_change(message):
+    while True:
+        try:
+            user_input = input(message)
+            if user_input.isdigit():
+                break
+        except ValueError:
+            print('Нужно ввеcти число')
+    return user_input    
